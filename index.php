@@ -4,7 +4,6 @@ require('header.php');
 // require functions file
 require_once('functions.php');
 
-
 ?>
     <section id="hero">
         <h4>Express Mall</h4>

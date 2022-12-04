@@ -1,55 +1,30 @@
 <?php
-
-$shuffle = $product->getFeaturedProduct('p_Id');
-
-//request method for cart button 
-if($_SERVER['REQUEST_METHOD'] == "POST"){
-    if(isset($_POST['product_submit'])){
-    //call method addToCart
-    $cart->addToCart($_POST['u_Id'], $_POST['p_Id']);
-    }
-}
-                
-?>
-
-
+                   include 'db.php';      
+                                  $query = "SELECT * FROM `store`";
+                                  $res = mysqli_query($con, $query);
+                                  if (mysqli_num_rows($res) > 0) {
+                                    while ($row = mysqli_fetch_assoc($res)) {
+                                        $id = $row['id'];
+                                  ?>
 
 <section id="product1" class="section-p1">
-        <h2>Featured Products</h2>
-        <p>Our Regular Selling Products</p>
-        <div class="pro-container">
-            <?php
-                foreach($shuffle as $item) {
-                    if($item['p_Id']){
-            ?>
-            <div class="pro" style="height:430px">
-                <img src="<?php echo $item['p_Image'] ?? "img/products/f1.jpg"; ?>" alt="" height="200px">
-                <div class="des">
-                    <span><?php echo $item['p_Title'] ?? "Unknown"; ?></span>
-                    <h5 style="height:50px"><?php echo $item['p_Description'] ?? "Cotton shirts pure cotton"; ?></h5>
-                    <div class="star">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <h4><?php echo "Rs/- ".$item['p_Price'] ?? '0'; ?></h4>
-                    <span><?php echo $item['p_Status'] ?? "Unknown"; ?></span>
-                </div>
-                <form method="post">
-                    <input type="hidden" value="<?php echo $item['p_Id'] ?? '1';?>" name="p_Id">
-                    <input type="hidden" value="<?php echo '1';?>" name="u_Id">
-                    <?php
-                        if(in_array($item['p_Id'], $cart1->getCartId($product->getData('cart')) ?? [])){
-                          echo '<button type="submit" disabled name="product_submit" style="background-color: grey; border: none; padding: 10px; color:white ; border-radius:20px;">In The Cart</button>';
-                        }else{
-                          echo '<button type="submit" name="product_submit" style="background-color: #0fc5b9; border: none; padding: 10px; color:white ; border-radius:20px;">Add to Cart</button>';
-                        }
-                    ?>
+        <h2><?php echo $row['name'];?></h2>
+        <div class="pro-container" >
+        <?php
+                                  $query1 = "SELECT * FROM `product_category` where store_id = '$id'";
+                                  $res1 = mysqli_query($con, $query1);
+                                  if (mysqli_num_rows($res1) > 0) {
+                                    while ($item = mysqli_fetch_assoc($res1)) {
+                                  ?>
+            <div class="pro" style="height:260px" onclick="location.href = 'shop.php?category=<?php echo $item['id']?>'">
+                <img src="<?php echo "img/products/".$item['image'] ?? "img/products/f1.jpg"; ?>" alt="" height="200px">
+                <div class="des" style="text-align: center">
+                    <h3 style="height:50px;"><?php echo $item['name'] ?? "No Title"; ?></h3>
                     
-                </form>
                 </div>
+               
+                </div>
+                
             <?php
                     }
                 }
@@ -57,3 +32,9 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
 
         </div>
     </section>
+
+    <?php 
+    
+                                    }
+                                }
+    ?>

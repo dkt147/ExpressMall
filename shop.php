@@ -3,16 +3,17 @@
 $page = "shop";
 //require header file
 require('header.php');
-// require functions file
-require_once('functions.php');
-?>
-<?php
-//request method for cart button 
-if($_SERVER['REQUEST_METHOD'] == "POST"){
-    if(isset($_POST['shop_submit'])){
-    //call method addToCart
-    $cart->addToCart($_POST['u_Id'], $_POST['p_Id']);
-    }
+
+if(isset($_GET['product'])){
+$product = $_GET['product'];
+}else{
+   $product = 'all';
+}
+
+if(isset($_GET['category'])){
+    $category = $_GET['category'];
+}else{
+    $category = 'all';
 }
 ?>
 
@@ -26,12 +27,29 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
 
     <section id="product1" class="section-p1">
         <div class="pro-container">
-            <?php foreach($product->getData() as $item) { ?>
-            <div class="pro" onclick="window.location.href='sproduct.html'" style="height: 430px;">
-                <img src="<?php echo $item['p_Image'] ?? "img/products/f1.jpg"; ?>" alt="" height="200px">
+        <?php
+                   include 'db.php';      
+
+                   if($category == 'all'){
+
+                    if($product == 'all'){
+                        $query = "SELECT * FROM `product`";
+                    }else{
+                        $query = "SELECT * FROM `product` where name like '%$product%'";
+                    }
+                }else{
+                    $query = "SELECT * FROM `product` where category_id = '$category'";
+                }
+                                  $res = mysqli_query($con, $query);
+                                  if (mysqli_num_rows($res) > 0) {
+                                    while ($item = mysqli_fetch_assoc($res)) {
+                                  ?>
+
+            <div class="pro" onclick="window.location.href='sproduct.php'" style="height: 430px;">
+                <img src="<?php echo "img/products/".$item['product_image'] ?? "img/products/f1.jpg"; ?>" alt="" height="200px">
                 <div class="des">
-                    <span><?php echo $item['p_Title'] ?? "Unknown"; ?></span>
-                    <h5 style="height:50px"><?php echo $item['p_Description'] ?? "Cotton shirts pure cotton"; ?></h5>
+                    <span><?php echo $item['name'] ?? "Unknown"; ?></span>
+                    <h5 style="height:50px"><?php echo $item['detail'] ?? ""; ?></h5>
                     <div class="star">
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
@@ -39,23 +57,22 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
                     </div>
-                    <h4><?php echo "Rs/- ".$item['p_Price'] ?? '0'; ?></h4>
-                    <span><?php echo $item['p_Status'] ?? "Unknown"; ?></span>
-                </div>
+                    <h4><?php echo "Rs/- ".$item['price'] ?? '0'; ?></h4>
+                    <span><?php if($item['quantity'] == 0){echo '<span style="color:red">Out Of Stock</span>';}else{echo '<span style="color:green">Available</span>';} ?></span>
+               </div>
                 <form method="post">
-                    <input type="hidden" value="<?php echo $item['p_Id'] ?? '1';?>" name="p_Id">
+                    <input type="hidden" value="<?php echo $item['id'] ?? '1';?>" name="p_Id">
                     <input type="hidden" value="<?php echo '1';?>" name="u_Id">
-                        <?php
-                            if(in_array($item['p_Id'], $cart1->getCartId($product->getData('cart')) ?? [])){
-                            echo '<button type="submit" name="shop_submit" disabled style="background-color: grey; border: none; padding: 10px; color:white ; border-radius:20px;">In The Cart</button>';
-                            }else{
-                            echo '<button type="submit" name="shop_submit" style="background-color: #0fc5b9; border: none; padding: 10px; color:white ; border-radius:20px;">Add to Cart</button>';
-                            }
-                        ?>  
+                    <button type="submit" <?php if($item['quantity'] == 0){echo 'disabled';}else{echo '';} ?> name="product_submit" style="background-color: #0fc5b9; border: none; padding: 10px; color:white ; border-radius:20px;">Add to Cart</button>
                 </form>  
               </div>
        
-                <?php } ?>
+                <?php }}else{ ?>
+
+                <h4 style="text-align:center">No Similar Product Found</h4>
+                    <?php 
+                }
+                    ?>
     </section>
 
    

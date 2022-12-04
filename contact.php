@@ -4,11 +4,37 @@ $page = "contact";
 require('header.php');
 // require functions file
 require_once('functions.php');
+
+if (isset($_POST['contact'])) {
+
+
+    //Stablishing Connection...
+    include 'db.php';
+
+    //Getting Values From Form Tag...
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $subject = $_POST['subject'];
+    $message = $_POST['message'];
+
+
+    //Insert Query For Mysql..
+    $query = "INSERT INTO `contact`(`name`, `email`, `subject`, `message`) VALUES ('$name','$email','$subject','$message')";
+    $res = mysqli_query($con, $query);
+
+    
+    //Redirection to testing_batch.php page..
+    // header("Location: http://localhost/LAB/Views/testing_batch.php");
+
+    //Connection Close...
+    mysqli_close($con);
+}
+
 ?>
 
 
 <section id="page-header" class="about-header">
-        <h2>#Contact Us</h2>
+        <h2>Contact Us</h2>
         <p> Leave a message. We would love to hear from you....</p>
         <a href="#" class="to-top">
             <i class="fas fa-chevron-up"></i>
@@ -46,14 +72,14 @@ require_once('functions.php');
     </section>
  
     <section id="form-details">
-        <form action="">
+        <form action="contact.php" method="post">
             <span>Leave a Message</span>
             <h2>We love to hear from you</h2>
-            <input type="text" placeholder="Enter your name">
-            <input type="text" placeholder="Enter your Email">
-            <input type="text" placeholder="Enter your Subjext">
-            <textarea name="" id="" cols="30" rows="10" placeholder="Your Message"></textarea>
-            <button class="normal">Submit</button>
+            <input type="text" placeholder="Enter your name" name="name">
+            <input type="text" placeholder="Enter your Email" name="email">
+            <input type="text" placeholder="Enter your Subjext" name="subject">
+            <textarea id="" cols="30" rows="10" placeholder="Your Message" name="message"></textarea>
+            <input type="submit" value="Send" class="normal" name="contact"/>
         </form>
 
         <div class="people">

@@ -9,13 +9,26 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
     }
 }
 ?>
-
 <section id="product1" class="section-p1">
         <h2>New Arrivals</h2>
         <p>New Arrivals of the Season</p>
+        
         <div class="pro-container">
-                <?php foreach($products_shuffle as $item) { ?>
-                <div class="pro" style="height:430px">
+        <?php
+                   
+                   //Stablishing Connection...
+                   include 'db.php';      
+                              //Getting Data From Databse...
+                                  $query = "SELECT * FROM `products` order by p_Id asc limit 4";
+                                  $res = mysqli_query($con, $query);
+        
+            
+                                  if (mysqli_num_rows($res) > 0) {
+                                    $c = 0;
+                                    while ($item = mysqli_fetch_assoc($res)) {
+                                      $c = $c + 1;
+                                  ?>
+                <div class="pro" style="height:430px" onclick="location.href = 'sproduct.php?id=<?php echo $item['p_Id']?>'">
                     <img src="<?php echo $item['p_Image'] ?? "img/products/f1.jpg"; ?>" alt="" height="200px">
                     <div class="des">
                         <span><?php echo $item['p_Title'] ?? "Unknown"; ?></span>
@@ -28,24 +41,19 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
                             <i class="fas fa-star"></i>
                         </div>
                         <h4><?php echo "Rs/- ".$item['p_Price'] ?? '0'; ?></h4>
-                        <span><?php echo $item['p_Status'] ?? "Unknown"; ?></span>
-                    </div>
+                        <span><?php if($item['quantity'] == 0){echo '<span style="color:red">Out Of Stock</span>';}else{echo '<span style="color:green">Available</span>';} ?></span>
+                 </div>
                     <form method="post">
                         <input type="hidden" value="<?php echo $item['p_Id'] ?? '1';?>" name="p_Id">
                         <input type="hidden" value="<?php echo '1';?>" name="u_Id">
-                        <?php
-                            if(in_array($item['p_Id'], $cart1->getCartId($product->getData('cart')) ?? [])){
-                            echo '<button type="submit" name="newArrival_submit" style="background-color: #FFA500; border: none; padding: 10px; color:white ; border-radius:20px;">In The Cart</button>';
-                            }else{
-                            echo '<button type="submit" name="newArrival_submit" style="background-color: #0fc5b9; border: none; padding: 10px; color:white ; border-radius:20px;">Add to Cart</button>';
-                            }
-                        ?>   
+                        <button type="submit" <?php if($item['quantity'] == 0){echo 'disabled';}else{echo '';} ?> name="product_submit" style="background-color: #0fc5b9; border: none; padding: 10px; color:white ; border-radius:20px;">Add to Cart</button>
+                                        
                     </form>
                     </div>
-                    <?php 
-                        }
-                    ?>
-            </div>
-        </div>
-
+           
+<?php 
+                                    }
+                                }
+                                ?>
+                                </div>
     </section>

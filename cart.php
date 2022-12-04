@@ -11,10 +11,39 @@ require_once('functions.php');
         $deletedrecord = $cart1->deleteCart($_POST['p_Id']);
     }
   }
+
+  if (isset($_POST['checkout'])) {
+
+
+    //Stablishing Connection...
+    include 'db.php';
+
+    //Getting Values From Form Tag...
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $phone = $_POST['phone'];
+    $address = $_POST['address'];
+    $zip = $_POST['zip'];
+
+
+    //Insert Query For Mysql..
+    $query = "INSERT INTO `order_tbl`(`customer_name`, `customer_email`, `customer_phone`, `customer_address`, `customer_zip`) VALUES ('$name','$email','$phone','$address','$zip')";
+    $res = mysqli_query($con, $query);
+
+    
+    //Redirection to testing_batch.php page..
+    // header("Location: http://localhost/LAB/Views/testing_batch.php");
+
+    //Connection Close...
+    mysqli_close($con);
+}
+
 ?>
+
+
 <section id="page-header" class="about-header">
-      <h2>#CART</h2>
-      <p>Enter your coupon code...</p>
+      <h2>Your Cart Items</h2>
+      <p>Confirm Your Order</p>
       <a href="#" class="to-top">
         <i class="fas fa-chevron-up"></i>
       </a>
@@ -26,6 +55,7 @@ require_once('functions.php');
     </section> -->
 
     <!-- cart items details-->
+    
     <div class="small-container">
       <table>
         <tr>
@@ -57,10 +87,8 @@ require_once('functions.php');
             
           </td>
           <td id="qty">
-            <button id="qty-up border bg-light" data-id="<?php echo $item['p_Id'] ?? '0'; ?>"><i class="fas fa-angle-up"></i></button>
-            <input type="text" data-id="<?php echo $item['p_Id'] ?? '0'; ?>" id="qty_input" disabled value="1" placeholder="1">
-            <button id="qty-down border bg-light" data-id="<?php echo $item['p_Id'] ?? '0'; ?>"><i class="fas fa-angle-down"></i></button>
-          </td>
+          <input type="number" value="1">
+         </td>
           <td><?php echo $item['p_Price']; ?></td>
           
         </tr>
@@ -81,49 +109,25 @@ require_once('functions.php');
       </div>
     </div>
 
-    <section id="form-details">
-      <form action="">
-        <span>Leave a Message</span>
-        <h2>We love to hear from you</h2>
-        <input type="text" placeholder="Enter your name" />
-        <input type="text" placeholder="Enter your Email" />
-        <input type="text" placeholder="Enter your Subjext" />
+    <section id="form-details" style="width: 50%">
+      <form action="cart.php" method="post">
+        <span>Confirm your order</span>
+        <h2>Checkout Form</h2>
+        <input type="text" placeholder="Enter your name" name="name"/>
+        <input type="email" placeholder="Enter your Email" name="email"/>
+        <input type="number" placeholder="Enter your Phone" min="11" name="phone"/>
         <textarea
-          name=""
+          name="address"
           id=""
           cols="30"
           rows="10"
-          placeholder="Your Message"
+          placeholder="Enter your Address"
         ></textarea>
-        <button class="normal">Submit</button>
+        <input type="number" placeholder="Enter your Zip" min="0" name="zip"/>
+
+        <input type="submit" value="Checkout" class="normal" name="checkout"/>
       </form>
 
-      <div class="people">
-        <div>
-          <img src="img/people/1.png" alt="" />
-          <p>
-            <span>John Doe</span> Senior Marketing Manager <br />
-            Phone: +91 1234567890 <br />
-            Email: contact@example.com
-          </p>
-        </div>
-        <div>
-          <img src="img/people/2.png" alt="" />
-          <p>
-            <span>John Doe</span> Senior Marketing Manager <br />
-            Phone: +91 1234567890 <br />
-            Email: contact@example.com
-          </p>
-        </div>
-        <div>
-          <img src="img/people/3.png" alt="" />
-          <p>
-            <span>Jean Doe</span> Senior Marketing Manager <br />
-            Phone: +91 1234567890 <br />
-            Email: contact@example.com
-          </p>
-        </div>
-      </div>
     </section>
 
    
