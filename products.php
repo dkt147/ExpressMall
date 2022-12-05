@@ -17,7 +17,7 @@
                                     while ($item = mysqli_fetch_assoc($res1)) {
                                   ?>
             <div class="pro" style="height:260px" onclick="location.href = 'shop.php?category=<?php echo $item['id']?>'">
-                <img src="<?php echo "img/products/".$item['image'] ?? "img/products/f1.jpg"; ?>" alt="" height="200px">
+                <img src="<?php echo "Panel/Admin/uploads/".$item['image'] ?? "img/products/f1.jpg"; ?>" alt="" height="200px">
                 <div class="des" style="text-align: center">
                     <h4 style="height:50px;"><?php echo $item['name'] ?? "No Title"; ?></h4>
                     

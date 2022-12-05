@@ -46,7 +46,7 @@ if(isset($_GET['category'])){
                                   ?>
 
             <div class="pro" onclick="window.location.href='sproduct.php?id=<?php echo $item['id']?>'" style="height: 450px;">
-                <img src="<?php echo "img/products/".$item['product_image'] ?? "img/products/f1.jpg"; ?>" alt="" height="200px">
+                <img src="<?php echo "Panel/Admin/uploads/".$item['product_image'] ?? "img/products/f1.jpg"; ?>" alt="" height="200px">
                 <div class="des">
                     <span><?php echo $item['name'] ?? "Unknown"; ?></span>
                     <h5 style="height:50px"><?php echo $item['detail'] ?? ""; ?></h5>
