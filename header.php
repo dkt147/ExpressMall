@@ -50,7 +50,13 @@
                 <li><a <?php if($page=='contact') { echo "class='active'";}else{} ; ?> href="contact.php">Contact</a></li>
                 <li id="lg-bag">
                     <a href="cart.php">
-                        <span><i class="fa fa-shopping-bag" aria-hidden="true"></i><sup>5</sup></span>
+                        <span><i class="fa fa-shopping-bag fa-lg" aria-hidden="true"></i><sup style="color: yellow">5</sup></span>
+                        
+                    </a>
+                </li>
+                <li id="lg-bag">
+                    <a href="login.php">
+                        <span><i class="fa fa-sign-in fa-lg" aria-hidden="true"></i></span>
                         
                     </a>
                 </li>
