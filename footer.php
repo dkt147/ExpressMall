@@ -60,7 +60,7 @@
     </div>
 
     <div class="copyright">
-        <p>c 2022, With ❤ Bhandary ,  Ecommerce Website Template</p>
+        <p>© 2022, Design and Developed By <a href="http://zelektra.com/" target="blank" style="color:red"><b>Zelektra</b></a></p>
     </div>
 
    </footer>

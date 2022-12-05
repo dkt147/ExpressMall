@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ecommerce Website</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
-    
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
   <link rel="icon" type="image/x-icon" href="logo.jpeg">
     <link rel="stylesheet" href="style.css">
     <style>
@@ -24,7 +24,7 @@
 <style>
    #search {
     border: 2px solid white;
-    background-color: lightgray;
+    background-color: white;
     border-radius: 15px;
     height: 44px;
     width: 300px;
@@ -36,7 +36,7 @@
 <body>
     
     <section id="header">
-        <a href="#"><img src="logo.jpeg" class="logo" alt="" height="60px"></a>
+        <a href="#"><img src="logo.jpeg" class="logo" alt="" height="50px"></a>
 
         <div>
             <ul id="navbar">
@@ -48,8 +48,8 @@
                 <li><a <?php if($page=='contact') { echo "class='active'";}else{} ; ?> href="contact.php">Contact</a></li>
                 <li id="lg-bag">
                     <a href="cart.php">
-                        <span><i class="fa fa-shopping-bag" aria-hidden="true"></i></span>
-                        <span id="counter" class="px-3 py-2 rounded-pill text-dark"><?php echo count($product->getCart('cart')); ?></span>
+                        <span><i class="fa fa-shopping-bag" aria-hidden="true"></i><sup>5</sup></span>
+                        
                     </a>
                 </li>
             </ul>

@@ -81,7 +81,7 @@ body {
   align-items: center;
   justify-content: space-between;
   padding: 20px 80px;
-  background: #ffffff;
+  background: #ff0000;
   box-shadow: 0 15px 15px rgba(0, 0, 0, 0.06);
   z-index: 999;
   position: sticky;
@@ -110,7 +110,14 @@ body {
 
 #navbar li a:hover,
 #navbar li a.active {
-  color: #088178;
+  color: #ffffff;
+}
+
+.fa-lg {
+  font-size: 1.33333333em;
+  line-height: .75em;
+  vertical-align: -15%;
+  color: white;
 }
 
 #navbar li a.active::after,
@@ -118,7 +125,7 @@ body {
   content: "";
   width: 40%;
   height: 2px;
-  background-color: #088178;
+  color: #ffffff;
   position: absolute;
   bottom: -4px;
   left: 20px;
