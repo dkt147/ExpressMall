@@ -30,11 +30,6 @@ require_once('functions.php');
         <button class="normal"><a href="shop.php" style="text-decoration:none;color:black">More</a></button>
     </section>
 
-    <?php
-    // new arrivals
-        include_once('newArrivals.php');
-    ?>
-
     <section id="sm-banner" class="section-p1">
         <div class="banner-box ">
             <h4>Crazy Deals</h4>
