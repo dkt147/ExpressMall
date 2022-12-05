@@ -5,7 +5,7 @@ require('header.php');
 require_once('functions.php');
 
 ?>
-    <section id="hero">
+    <!-- <section id="hero">
         <h4>Express Mall</h4>
         <h4>On Discounted Price</h4>
         <h1>All Premium Products</h1>
@@ -14,7 +14,28 @@ require_once('functions.php');
         <a href="#" class="to-top">
         <i class="fas fa-chevron-up"></i>
         </a>
-    </section>
+    </section> -->
+
+    <section class="carousel">
+  <!-- <button class="slider-button slider-button-prev" data-slide-direction="prev">&#8592</button>
+  <button class="slider-button slider-button-next" data-slide-direction="next">&#8594</button> -->
+  <ul class="slides">
+    <li class="slide" data-active-slide>
+      <img src="banner/1.jpg" alt="Nature Image #1" />
+    </li>
+    <li class="slide">
+      <img src="banner/2.jpg" alt="Nature Image #2" />
+    </li>
+    <li class="slide">
+      <img src="banner/3.jpg" alt="Nature Image #3" />
+    </li>
+  </ul>
+  <div class="slides-circles">
+    <div data-active-slide></div>
+    <div></div>
+    <div></div>
+  </div>
+</section>
 
     <?php
     //service section

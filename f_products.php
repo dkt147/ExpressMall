@@ -1,6 +1,6 @@
 <?php
                    include 'db.php';      
-                                  $query = "SELECT * FROM `store`";
+                                  $query = "SELECT * FROM `store` limit 1";
                                   $res = mysqli_query($con, $query);
                                   if (mysqli_num_rows($res) > 0) {
                                     while ($row = mysqli_fetch_assoc($res)) {
@@ -11,7 +11,7 @@
         <h2><?php echo $row['name'];?></h2>
         <div class="pro-container" >
         <?php
-                                  $query1 = "SELECT * FROM `product_category` where store_id = '$id'";
+                                  $query1 = "SELECT * FROM `product_category` where store_id = '$id' ";
                                   $res1 = mysqli_query($con, $query1);
                                   if (mysqli_num_rows($res1) > 0) {
                                     while ($item = mysqli_fetch_assoc($res1)) {

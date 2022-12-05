@@ -23,7 +23,7 @@ require('header.php');
                    include 'db.php';      
                    $id = $_GET['id'];
                               //Getting Data From Databse...
-                                  $query = "SELECT * FROM `products` where p_Id = '$id'";
+                                  $query = "SELECT * FROM `product` where id = '$id'";
                                   $res = mysqli_query($con, $query);
                                   if (mysqli_num_rows($res) > 0) {
                                     while ($item = mysqli_fetch_assoc($res)) {
@@ -32,11 +32,11 @@ require('header.php');
 
     <section id="prodetails" class="sectio-p1">
         <div class="single-pro-image">
-            <img src="<?php echo $item['p_Image'];?>" width="100%" id="MainImg" alt="">
+            <img src="<?php echo "img/products/".$item['product_image'];?>" width="100%" id="MainImg" alt="">
 
             <div class="small-img-group">
                 <div class="small-img-col">
-                    <img src="<?php echo $item['p_Image'];?>" width="100%" class="small-img" alt="">
+                    <img src="<?php echo "img/products/".$item['product_image'];?>" width="100%" class="small-img" alt="">
                 </div>
                 <!-- <div class="small-img-col">
                     <img src="img/products/f2.jpg" width="100%" class="small-img" alt="">
@@ -51,12 +51,12 @@ require('header.php');
         </div>
 
         <div class="single-pro-details">
-            <h4><?php echo $item['p_Title'];?></h4>
-            <h2><?php echo "Rs/- ".$item['p_Price'];?></h2>
+            <h4><?php echo $item['name'];?></h4>
+            <h2><?php echo "Rs/- ".$item['price'];?></h2>
             <input type="number" value="1">
             <button class="normal">Add to cart</button>
             <h4>Product Details</h4>
-            <span><?php echo $item['p_Detail'];?></span>
+            <span><?php echo $item['detail'];?></span>
         </div>
     </section>
 
@@ -65,9 +65,11 @@ require('header.php');
                                 }
                                 ?>
 
+<br><br><br>
+<hr><br><br>
     <?php
     // products section
-        include_once('products.php');
+        include_once('f_products.php');
     ?>
 
 

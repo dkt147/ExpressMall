@@ -80,7 +80,9 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 20px 80px;
+  padding-left: 80px;
+  padding-right: 80px;
+  padding-top: 20px;
   background: #ff0000;
   box-shadow: 0 15px 15px rgba(0, 0, 0, 0.06);
   z-index: 999;
@@ -274,7 +276,7 @@ body {
 
 #product1 .pro-container {
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   padding-top: 20px;
   flex-wrap: wrap;
 }
