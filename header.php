@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
     <link rel="stylesheet" href="slider.css" />
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
-  <link rel="icon" type="image/x-icon" href="logo.jpeg">
+  <link rel="icon" type="image/x-icon" href="icon.jpeg">
     <link rel="stylesheet" href="style.css">
     <style>
         body {
@@ -38,7 +38,7 @@
 <body>
     
     <section id="header">
-        <a href="#"><img src="logo.jpeg" class="logo" alt="" height="50px"></a>
+        <a href="#"><img src="icon.jpeg" class="logo" alt="" height="50px"></a>
 
         <div>
             <ul id="navbar">
@@ -50,15 +50,28 @@
                 <li><a <?php if($page=='contact') { echo "class='active'";}else{} ; ?> href="contact.php">Contact</a></li>
                 <li id="lg-bag">
                     <a href="cart.php">
-                        <span><i class="fa fa-shopping-bag fa-lg" aria-hidden="true"></i><sup style="color: yellow">5</sup></span>
+                        <span><i class="fa fa-shopping-bag fa-lg" aria-hidden="true"></i><sup style="color: yellow">0</sup></span>
                         
                     </a>
                 </li>
                 <li id="lg-bag">
+
+                    <?php
+                    session_start();
+                    if(isset($_SESSION['email'])){?>
+                    <a href="dashboard.php">
+                        <span><i class="fa fa-user fa-lg" aria-hidden="true"></i></span>
+                    </a>
+                    <?php
+                    }else{
+                    ?>
                     <a href="login.php">
                         <span><i class="fa fa-sign-in fa-lg" aria-hidden="true"></i></span>
-                        
                     </a>
+                    <?php
+                }
+                ?>
+
                 </li>
             </ul>
         </div>

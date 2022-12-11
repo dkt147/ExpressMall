@@ -1,5 +1,14 @@
 <?php 
+ $host = 'localhost';
+ $user = 'root';
+ $password = '';
+ $database = 'ecom';
 
-$con = mysqli_connect("localhost", "u343233411_expressmall", "expressmallStore2020@", "u343233411_expressmall") or die("Query Failed!!!");
+ // $host = 'localhost';
+ // $user = 'u343233411_expressmall';
+ // $password = 'expressmallStore2020@';
+ // $database = 'u343233411_expressmall';
+
+$con = mysqli_connect($host, $user, $password, $database) or die("Query Failed!!!");
 
 ?>
