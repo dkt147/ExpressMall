@@ -1,15 +1,15 @@
 <?php
 
 class dbController{
-    protected $host = 'localhost';
-    protected $user = 'root';
-    protected $password = '';
-    protected $database = 'ecom';
-
     // protected $host = 'localhost';
-    // protected $user = 'u343233411_expressmall';
-    // protected $password = 'expressmallStore2020@';
-    // protected $database = 'u343233411_expressmall';
+    // protected $user = 'root';
+    // protected $password = '';
+    // protected $database = 'ecom';
+
+    protected $host = 'localhost';
+    protected $user = 'u343233411_expressmall';
+    protected $password = 'expressmallStore2020@';
+    protected $database = 'u343233411_expressmall';
 
     //connection property
     public $conn = null;
