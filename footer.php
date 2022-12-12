@@ -1,7 +1,7 @@
 <section id="newsletter" class="section-p1 section-m1">
         <div class="newstext">
             <h4>Sign uP for newsletters</h4>
-            <p>Lorem ipsum dolor sit amet <span>consectetur</span>.</p>
+            <p>For latest products and updates<span> Send email</span>.</p>
         </div>
         <div class="form">
             <input type="text" placeholder="your email address">
@@ -13,9 +13,10 @@
     <div class="col">
         <img class="logo" src="logo.jpeg" alt="" height="60px">
         <h4>Contact</h4>
-        <p><strong>Address :</strong> Lorem ipsum dolor sit</p>
+        <p><strong>Address :</strong> Karachi</p>
         <p><strong>Phone :</strong> 13569876540</p>
-        <p><strong>Hours :</strong> 5hoai</p>
+        <p><strong>Email :</strong> test@email.com</p>
+        <p><strong>Hours :</strong> 24/7 </p>
         <div class="follow">
             <h4>Follow Us</h4>
             <div class="icon">
