@@ -1,5 +1,4 @@
 <?php
-
 $page = "shop";
 //require header file
 require('header.php');
@@ -44,6 +43,7 @@ if(isset($_GET['category'])){
                                   if (mysqli_num_rows($res) > 0) {
                                     while ($item = mysqli_fetch_assoc($res)) {
                                   ?>
+                <form method="post" action="shop.php">
 
             <div class="pro" onclick="window.location.href='sproduct.php?id=<?php echo $item['id']?>'" style="height: 450px;">
                 <img src="<?php echo "Panel/Admin/uploads/".$item['product_image'] ?? "img/products/f1.jpg"; ?>" alt="" height="200px">
@@ -60,9 +60,13 @@ if(isset($_GET['category'])){
                     <h4><?php echo "Rs/- ".$item['price'] ?? '0'; ?></h4>
                     <span><?php if($item['quantity'] == 0){echo '<span style="color:red">Out Of Stock</span>';}else{echo '<span style="color:green">Available</span>';} ?></span>
                </div>
-                <form method="post">
-                    <input type="hidden" value="<?php echo $item['id'] ?? '1';?>" name="p_Id">
-                    <input type="hidden" value="<?php echo '1';?>" name="u_Id">
+                    <input type="hidden" value="<?php echo $item['id'] ?? '1';?>" name="id">
+                    <input type="hidden" value="<?php echo $item['name'] ?? '1';?>" name="name">
+                    <input type="hidden" value="<?php echo $item['price'] ?? '1';?>" name="price">
+                    <input type="hidden" value="<?php echo $item['detail'] ?? '1';?>" name="detail">
+                    <input type="hidden" value="<?php echo $item['product_image'] ?? '1';?>" name="product_image">
+                    <input type="hidden" value="<?php echo $item['quantity'] ?? '1';?>" name="quantity">
+                    <input type="hidden" value="<?php if(isset($_SESSION['email']));?>" name="user_id">
                     <button type="submit" id="product_btn" <?php if($item['quantity'] == 0){echo 'disabled';}else{echo '';} ?> name="product_submit" style="background-color: #0fc5b9; border: none; padding: 10px; color:white ; border-radius:20px;">Add to Cart</button>
                 </form>  
               </div>
@@ -75,8 +79,27 @@ if(isset($_GET['category'])){
                     ?>
     </section>
 
+    <?php
+    if(isset($_POST['product_submit'])){
+        $data['id'] =  $_POST['id'];
+        $data['name'] =  $_POST['name'];
+        $data['price'] =  $_POST['price'];
+        $data['detail'] =  $_POST['detail'];
+        $data['product_image'] =  $_POST['product_image'];
+        $data['quantity'] =  $_POST['quantity'];
+        $data['user_id'] =  $_POST['user_id'];
+
+        $_SESSION['cart'][] = $data;
+
+        echo "<script>window.location.href='shop.php'</script>";
+    }
+    ?>
     <script>
-        
+        $(document).ready(function(){
+            var button_id = document.getElementById("product_btn");
+            console.log(button_id);
+}
+
         </script>
    
     <?php include 'footer.php';?>

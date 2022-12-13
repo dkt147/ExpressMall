@@ -64,22 +64,21 @@ require_once('functions.php');
           <th>Subtotal</th>
         </tr>
         <?php 
-          foreach($product->getCart() as $item):
-          $cart = $product->getProduct($item['p_Id']);
-          $subTotal[] = array_map(function($item){
+          foreach($_SESSION['cart'] as $item){
+
         ?>
         <tr>
         
           <td>
           
             <div class="cart-info">
-              <img src="<?php echo $item['p_Image'] ?? "img/products/f1.jpg"; ?>" alt="Tshirt" />
+              <img src="<?php echo $item['image'] ?? "img/products/f1.jpg"; ?>" alt="Tshirt" />
               <div>
-                <p style="color:alice"><b><?php echo $item['p_Title'] ?? "Unknown"; ?></b></p>
-                <small style="margin:5px;color:green"><b><?php echo $item['p_Price'] ?? '0'; ?></b></small>
+                <p style="color:alice"><b><?php echo $item['name'] ?? "Unknown"; ?></b></p>
+                <small style="margin:5px;color:green"><b><?php echo $item['price'] ?? '0'; ?></b></small>
                 <br />
                 <form method="post">
-                   <input type="hidden" value="<?php echo $item['p_Id'] ?? 0; ?> " name="p_Id">
+                   <input type="hidden" value="<?php echo $item['id'] ?? 0; ?> " name="p_Id">
                    <button type="submit" name="delete-cart-submit" style="border: none; background:red; color:white;border:2px solid red;border-radius:25px;padding:5px;margin-top:5px">Remove</button> 
                 </form>
               </div>
@@ -89,13 +88,11 @@ require_once('functions.php');
           <td id="qty">
           <input type="number" value="1">
          </td>
-          <td><?php echo $item['p_Price']; ?></td>
+          <td><?php echo $item['price']; ?></td>
           
         </tr>
         <?php 
-              return $item['p_Price'];
-              },$cart); //closing array map function
-              endforeach;
+             }
             ?>
       </table>
 

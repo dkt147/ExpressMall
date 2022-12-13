@@ -1,5 +1,5 @@
 
-
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -50,14 +50,13 @@
                 <li><a <?php if($page=='contact') { echo "class='active'";}else{} ; ?> href="contact.php">Contact</a></li>
                 <li id="lg-bag">
                     <a href="cart.php">
-                        <span><i class="fa fa-shopping-bag fa-lg" aria-hidden="true"></i><sup style="color: yellow">0</sup></span>
+                        <span><i class="fa fa-shopping-bag fa-lg" aria-hidden="true"></i><sup style="color: yellow"><?php if(isset($_SESSION['cart'])){echo count($_SESSION['cart']);}else{echo 0;}?></sup></span>
                         
                     </a>
                 </li>
                 <li id="lg-bag">
 
                     <?php
-                    session_start();
                     if(isset($_SESSION['email'])){?>
                     <a href="dashboard.php">
                         <span><i class="fa fa-user fa-lg" aria-hidden="true"></i></span>
