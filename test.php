@@ -90,7 +90,7 @@ $html .= '</th>
 </html>';
 
 
-smtp_mailer('daniyalreavtech@gmail.com','Express Mall Store | Purchase Invoice',$html);
+smtp_mailer($email,'Express Mall Store | Purchase Invoice',$html);
 function smtp_mailer($to,$subject, $msg){
 	$mail = new PHPMailer(); 
 	$mail->SMTPDebug  = 3;
