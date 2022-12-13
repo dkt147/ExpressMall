@@ -32,36 +32,51 @@ require('header.php');
 
     <section id="prodetails" class="sectio-p1">
         <div class="single-pro-image">
-            <img src="<?php echo "img/products/".$item['product_image'];?>" width="100%" id="MainImg" alt="">
+            <img src="<?php echo "Panel/Admin/uploads/".$item['product_image'];?>" width="100%" id="MainImg" alt="">
 
             <div class="small-img-group">
                 <div class="small-img-col">
-                    <img src="<?php echo "img/products/".$item['product_image'];?>" width="100%" class="small-img" alt="">
+                    <img src="<?php echo "Panel/Admin/uploads/".$item['product_image'];?>" width="100%" class="small-img" alt="">
                 </div>
-                <!-- <div class="small-img-col">
-                    <img src="img/products/f2.jpg" width="100%" class="small-img" alt="">
-                </div>
-                <div class="small-img-col">
-                    <img src="img/products/f3.jpg" width="100%" class="small-img" alt="">
-                </div>
-                <div class="small-img-col">
-                    <img src="img/products/f4.jpg" width="100%" class="small-img" alt="">
-                </div> -->
+                    
             </div>
         </div>
 
         <div class="single-pro-details">
             <h4><?php echo $item['name'];?></h4>
             <h2><?php echo "Rs/- ".$item['price'];?></h2>
-            <input type="number" value="1">
-            <button class="normal">Add to cart</button>
+        <form method="POST" action="sproduct.php">
+            <input type="number" value="1" name="quantity">
+                    <input type="hidden" value="<?php echo $item['id'] ?? '1';?>" name="id">
+                    <input type="hidden" value="<?php echo $item['name'] ?? '1';?>" name="name">
+                    <input type="hidden" value="<?php echo $item['price'] ?? '1';?>" name="price">
+                    <input type="hidden" value="<?php echo $item['detail'] ?? '1';?>" name="detail">
+                    <input type="hidden" value="<?php echo $item['product_image'] ?? '1';?>" name="product_image">
+                    <input type="hidden" value="<?php if(isset($_SESSION['email']));?>" name="user_id">
+            <button class="normal" type="submit" name="product_submit">Add to cart</button>
             <h4>Product Details</h4>
             <span><?php echo $item['detail'];?></span>
         </div>
+                                    </form>
     </section>
 
     <?php 
                                     }
+                                }
+
+
+                                if(isset($_POST['product_submit'])){
+                                    $data['id'] =  $_POST['id'];
+                                    $data['name'] =  $_POST['name'];
+                                    $data['price'] =  $_POST['price'];
+                                    $data['detail'] =  $_POST['detail'];
+                                    $data['product_image'] =  $_POST['product_image'];
+                                    $data['quantity'] =  $_POST['quantity'];
+                                    $data['user_id'] =  $_POST['user_id'];
+                            
+                                    $_SESSION['cart'][] = $data;
+                            
+                                    echo "<script>window.location.href='shop.php'</script>";
                                 }
                                 ?>
 

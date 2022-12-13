@@ -66,7 +66,6 @@ if(isset($_GET['category'])){
                     <input type="hidden" value="<?php echo $item['price'] ?? '1';?>" name="price">
                     <input type="hidden" value="<?php echo $item['detail'] ?? '1';?>" name="detail">
                     <input type="hidden" value="<?php echo $item['product_image'] ?? '1';?>" name="product_image">
-                    <input type="hidden" value="<?php echo $item['quantity'] ?? '1';?>" name="quantity">
                     <input type="hidden" value="<?php if(isset($_SESSION['email']));?>" name="user_id">
                     <button type="submit" id="product_btn" <?php if($item['quantity'] == 0){echo 'disabled';}else{echo '';} ?> name="product_submit" style="background-color: #0fc5b9; border: none; padding: 10px; color:white ; border-radius:20px;">Add to Cart</button>
                 </form>  

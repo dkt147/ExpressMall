@@ -38,6 +38,13 @@ require_once('functions.php');
     mysqli_close($con);
 }
 
+if(isset($_POST['delete-cart-submit'])){
+    echo $count = $_POST['counter'];
+    unset($_SESSION['cart'][0]);
+  
+    echo "<script>window.location.href='cart.php'</script>";
+}
+
 ?>
 
 
@@ -64,6 +71,7 @@ require_once('functions.php');
           <th>Subtotal</th>
         </tr>
         <?php 
+          $counter = 0;
           foreach($_SESSION['cart'] as $item){
 
         ?>
@@ -77,7 +85,8 @@ require_once('functions.php');
                 <p style="color:alice"><b><?php echo $item['name'] ?? "Unknown"; ?></b></p>
                 <small style="margin:5px;color:green"><b><?php echo $item['price'] ?? '0'; ?></b></small>
                 <br />
-                <form method="post">
+                <form method="post" action="cart.php">
+                   <input type="hidden" value="<?php echo $counter; ?> " name="counter">
                    <input type="hidden" value="<?php echo $item['id'] ?? 0; ?> " name="p_Id">
                    <button type="submit" name="delete-cart-submit" style="border: none; background:red; color:white;border:2px solid red;border-radius:25px;padding:5px;margin-top:5px">Remove</button> 
                 </form>
@@ -92,7 +101,8 @@ require_once('functions.php');
           
         </tr>
         <?php 
-             }
+                       $counter = $counter + 1;
+                      }
             ?>
       </table>
 
