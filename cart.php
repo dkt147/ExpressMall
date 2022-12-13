@@ -44,6 +44,7 @@ require_once('functions.php');
 
       foreach($_SESSION['cart'] as $item){
         
+        $id1 = $item['id'];
         $name1 = $item['name'];
         $product_image1 = $item['product_image'];
         $detail1 = $item['detail'];
@@ -54,6 +55,11 @@ require_once('functions.php');
         $query = "INSERT INTO `order_detail`(`order_id`, `name`, `image`, `detail`, `quantity`, `price`) 
         VALUES ('$order_id','$name1','$product_image1','$detail1','$quantity1','$price1')";
         $res = mysqli_query($con, $query);
+
+        //Insert Query For Mysql..
+        $query2 = "UPDATE `product` SET quantity = quantity - $quantity1 where id =  $id1";
+        $res2 = mysqli_query($con, $query2);
+
       }
 
 include 'test.php';
