@@ -83,7 +83,7 @@ if(isset($_GET['category'])){
     if(isset($_POST['product_submit'])){
         $data['id'] =  $_POST['id'];
         $data['name'] =  $_POST['name'];
-        $data['price'] =  $_POST['price'];
+        $data['price'] =  $_POST['price'] * $_POST['quantity'];
         $data['detail'] =  $_POST['detail'];
         $data['product_image'] =  $_POST['product_image'];
         $data['quantity'] =  $_POST['quantity'];

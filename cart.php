@@ -72,6 +72,7 @@ if(isset($_POST['delete-cart-submit'])){
         </tr>
         <?php 
           $counter = 0;
+          $sum = 0;
           foreach($_SESSION['cart'] as $item){
 
         ?>
@@ -97,11 +98,12 @@ if(isset($_POST['delete-cart-submit'])){
           <td id="qty">
           <input type="number" value="<?php echo $item['quantity'] ?? 0; ?>">
          </td>
-          <td><?php echo $item['price']; ?></td>
+          <td><?php echo "Rs/- ".$item['price']; ?></td>
           
         </tr>
         <?php 
                        $counter = $counter + 1;
+                       $sum = $sum + $item['price'];
                       }
             ?>
       </table>
@@ -110,7 +112,7 @@ if(isset($_POST['delete-cart-submit'])){
         <table>
           <tr>
             <td>Total Amount Payable</td>
-            <td><?php echo isset($subTotal) ? $cart1->getSum($subTotal) : 0; ?></td>
+            <td><?php echo "Rs/- ".$sum ?></td>
           </tr>
         </table>
       </div>
