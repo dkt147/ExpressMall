@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <html>
 
 <head>
@@ -277,6 +278,27 @@
     </style>
 </head>
 
+<?php
+if(isset($_POST['update'])){
+    include 'db.php';
+
+    $id = $_POST['id'];
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $phone = $_POST['phone'];
+    $password = $_POST['password'];
+
+    $query = "UPDATE `users` SET `name` = '$name',`email`='$email',`phone`='$phone',`password`='$password' where id = '$id'";
+    $res = mysqli_query($con, $query);
+
+    if($res){
+        echo "<script>alert('Profile updated!')</script>";
+        echo "<script>window.location.href='dashboard.php'</script>";
+    }
+}
+
+?>
+
 <body>
     <div class="container">
         <header>
@@ -297,7 +319,7 @@
             <input type="radio" id="tab-4" name="tab-effect-3">
             <span>Add Card</span>
 
-            <input type="radio" id="tab-5" name="tab-effect-3">
+            <input type="radio" id="tab-5" name="tab-effect-3" id="logout">
             <span>Logout</span>
 
             <div class="line ease"></div>
@@ -310,29 +332,41 @@
                         <div class="row">
                             <div class="col-md-2"></div>
                             <div class="col-md-6">
-                                <form>
+                            <?php 
+    //Stablishing Connection...
+    include 'db.php';
+
+                    $email = $_SESSION['email'];
+                    $query = "SELECT * FROM `users` where email = '$email'";
+                    $res = mysqli_query($con, $query);
+                    $user_data = mysqli_fetch_assoc($res);
+                    ?>
+
+                                <form action="dashboard.php" method="POST">
                                     <div class="form-group">
                                         <label >Name</label>
-                                        <input type="text" class="form-control">
+                                        <input type="text" class="form-control" value="<?php echo $user_data['name']?>" name="name">
                                     </div>
 <br>
                                     <div class="form-group">
                                         <label >Email address</label>
-                                        <input type="email" class="form-control">
+                                        <input type="email" class="form-control" value="<?php echo $user_data['email']?>" name="email">
                                     </div>
                                     <br>
                                     <div class="form-group">
                                         <label >Phone</label>
-                                        <input type="text" class="form-control">
+                                        <input type="text" class="form-control" value="<?php echo $user_data['phone']?>" name="phone"> 
                                     </div>
                                     <br>
                                     <div class="form-group">
                                         <label >Password</label>
-                                        <input type="text" class="form-control">
+                                        <input type="text" class="form-control" value="<?php echo $user_data['password']?>" name="password">
                                     </div>
                                     <br>
-                                    <button type="submit" class="btn btn-primary">Update</button>
+                                    <input type="hidden" class="form-control" value="<?php echo $user_data['id']?>" name="id">
+                                    <button type="submit" class="btn btn-primary" name="update">Update</button>
                                 </form>
+
                             </div>
                             <div class="col-md-2"></div>
 
@@ -344,38 +378,81 @@
 
                     <table class="table table-striped">
                         <thead>
-                            <tr style="background-color: grey;">
-                                <th scope="col">Order #</th>
-                                <th scope="col">Amount</th>
+                        <tr style="background-color: grey;">
+                                <th scope="col">Item #</th>
+                                <th scope="col">Tracking ID</th>
                                 <th scope="col">Status</th>
+                                <th scope="col">Price</th>
                                 <th scope="col">Date</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th scope="row" style="color:black">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
+                           
+                        <?php 
+          $counter = 0;
+          $sum = 0;
+          $user_id = $user_data['id'];
+          $query = "SELECT * FROM `orders` where user_id = '$user_id'";
+          $res = mysqli_query($con, $query);
+          if (mysqli_num_rows($res) > 0) {
+          while ($item = mysqli_fetch_assoc($res)) {
+
+        ?>
+        <tr>
+                                <th scope="row" style="color:black"><?php echo $counter+1;?></th>
+                                <td><?php echo $item['tracking_id'];?></td>
+                                <td><?php echo $item['status'];?></td>
+                                <td><?php echo "Rs/- ".$item['price'];?></td>
+                                <td><?php echo $item['date'];?></td>
                             </tr>
-                            <tr>
-                                <th scope="row" style="color:black">2</th>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td>@fat</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td>Larry</td>
-                                <td>the Bird</td>
-                                <td>@twitter</td>
-                            </tr>
+
+        <?php 
+                       $counter = $counter + 1;
+                      }
+                    }
+            ?>
                         </tbody>
                     </table>
                 </section>
                 <section id="tab-item-3">
                     <br>
-                    <h1>Order History</h1>
+                    <table class="table table-striped">
+                        <thead>
+                        <tr style="background-color: grey;">
+                                <th scope="col">Item #</th>
+                                <th scope="col">Tracking ID</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Price</th>
+                                <th scope="col">Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                           
+                        <?php 
+          $counter = 0;
+          $sum = 0;
+          $user_id = $user_data['id'];
+          $query = "SELECT * FROM `orders` where user_id = '$user_id' and status != 'pending'";
+          $res = mysqli_query($con, $query);
+          if (mysqli_num_rows($res) > 0) {
+          while ($item = mysqli_fetch_assoc($res)) {
+
+        ?>
+        <tr>
+                                <th scope="row" style="color:black"><?php echo $counter+1;?></th>
+                                <td><?php echo $item['tracking_id'];?></td>
+                                <td><?php echo $item['status'];?></td>
+                                <td><?php echo "Rs/- ".$item['price'];?></td>
+                                <td><?php echo $item['date'];?></td>
+                            </tr>
+
+        <?php 
+                       $counter = $counter + 1;
+                      }
+                    }
+            ?>
+                        </tbody>
+                    </table>
                 </section>
                 <section id="tab-item-4">
                     <br>
@@ -390,6 +467,9 @@
 
     </div>
     </div>
+    <script>
+        
+    </script>
     <footer class="footer">
         <div class="container">
             <div class="copyright"><b>
