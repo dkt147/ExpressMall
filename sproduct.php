@@ -46,7 +46,7 @@ require('header.php');
             <h4><?php echo $item['name'];?></h4>
             <h2><?php echo "Rs/- ".$item['price'];?></h2>
         <form method="POST" action="sproduct.php">
-            <input type="number" value="1" name="quantity">
+            <input type="number" value="1" name="quantity" min="1">
                     <input type="hidden" value="<?php echo $item['id'] ?? '1';?>" name="id">
                     <input type="hidden" value="<?php echo $item['name'] ?? '1';?>" name="name">
                     <input type="hidden" value="<?php echo $item['price'] ?? '1';?>" name="price">

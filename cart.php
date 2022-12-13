@@ -19,23 +19,55 @@ require_once('functions.php');
     //Stablishing Connection...
     include 'db.php';
 
+    // $user = $_SESSION['email'];
+
+    
+    // $query = "SELECT * FROM `users` where email = '$user'";
+    // $res = mysqli_query($con, $query);
+    // $row = mysqli_fetch_assoc($res);
+
     //Getting Values From Form Tag...
+    $user_id = $_POST['user_id'];
     $name = $_POST['name'];
     $tracking_id = $_POST['name']."-".rand(10,100);
     $email = $_POST['email'];
     $phone = $_POST['phone'];
     $address = $_POST['address'];
-    $zip = $_POST['zip'];
+    $price = $_POST['price'];
 
 
     //Insert Query For Mysql..
-    $query = "INSERT INTO `orders`(`customer_name`, `customer_email`, `customer_phone`, `customer_address`, `customer_zip`) VALUES ('$name','$email','$phone','$address','$zip')";
+    $query = "INSERT INTO `orders`(`user_id`, `product_id`, `tracking_id`, `quantity`,`price`,`address`)
+    VALUES ('$user_id',1,'$tracking_id',0,'$address','$price','$address')";
     $res = mysqli_query($con, $query);
 
-    
-    //Redirection to testing_batch.php page..
-    // header("Location: http://localhost/LAB/Views/testing_batch.php");
+    if($res){
 
+      
+      $query = "SELECT * FROM `orders` where tracking_id = '$tracking_id'";
+      $res = mysqli_query($con, $query);
+      $row = mysqli_fetch_assoc($res);
+      $order_id = $row['id'];
+
+      foreach($_SESSION['cart'] as $item){
+        
+        $name = $item['name'];
+        $product_image = $item['product_image'];
+        $detail = $item['detail'];
+        $quantity = $item['quantity'];
+        $price = $item['price'];
+
+        //Insert Query For Mysql..
+        $query = "INSERT INTO `order_detail`(`order_id`, `name`, `image`, `detail`, `quantity`, `price`) 
+        VALUES ('$order_id','$name','$product_image','$detail','$quantity','$price')";
+        $res = mysqli_query($con, $query);
+        
+      
+      }
+
+
+    }
+    
     //Connection Close...
     mysqli_close($con);
 }
@@ -111,23 +143,38 @@ if(isset($_POST['delete-cart-submit'])){
     </div>
 
     <section id="form-details" style="width: 50%">
+
+    <?php 
+    
+    //Stablishing Connection...
+    include 'db.php';
+
+                    $email = $_SESSION['email'];
+                    $query = "SELECT * FROM `users` where email = '$email'";
+                    $res = mysqli_query($con, $query);
+                    $user_data = mysqli_fetch_assoc($res);
+                    ?>
+                    
+    
       <form action="cart.php" method="post">
         <span>Confirm your order</span>
         <h2>Checkout Form</h2>
-        <input type="text" placeholder="Enter your name" name="name"/>
-        <input type="email" placeholder="Enter your Email" name="email"/>
-        <input type="number" placeholder="Enter your Phone" min="11" name="phone"/>
+        <input type="text" placeholder="Enter Receiver name" name="name" required value="<?php echo $user_data['name']?>"/>
+        <input type="email" placeholder="Enter Receiver Email" name="email" required value="<?php echo $user_data['email']?>"/>
+        <input type="number" placeholder="Enter Receiver Phone" min="11" name="phone" required value="<?php echo $user_data['phone']?>"/>
         <textarea
           name="address"
           id=""
           cols="30"
           rows="10"
-          placeholder="Enter your Address"
+          placeholder="Enter Receiver Address"
+          required
         ></textarea>
-        <input type="number" placeholder="Enter your Zip" min="0" name="zip"/>
-
-        <input type="submit" value="Checkout" class="normal" name="checkout"/>
+        <input type="hidden" name="user_id" value="<?php echo $user_data['id']?>">
+        <input type="hidden" name="price" value="<?php echo $sum?>">
+        <input type="submit" value="Checkout <?php echo "(Rs/- ".$sum.")"?>" class="normal" name="checkout"/>
       </form>
+
 
     </section>
 
