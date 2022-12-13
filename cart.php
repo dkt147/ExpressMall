@@ -38,7 +38,7 @@ require_once('functions.php');
 
     //Insert Query For Mysql..
     $query = "INSERT INTO `orders`(`user_id`, `product_id`, `tracking_id`, `quantity`,`price`,`address`)
-    VALUES ('$user_id',1,'$tracking_id',0,'$address','$price','$address')";
+    VALUES ('$user_id',1,'$tracking_id',0,'$price','$address')";
     $res = mysqli_query($con, $query);
 
     if($res){
@@ -64,6 +64,9 @@ require_once('functions.php');
         
       
       }
+
+      unset($_SESSION['cart']);
+      echo "<script>alert('Your order has been confirmed!')</script>";
 
 
     }
@@ -115,6 +118,7 @@ if(isset($_POST['delete-cart-submit'])){
         <?php 
           $counter = 0;
           $sum = 0;
+          if(isset($_SESSION['cart']) && count($_SESSION['cart']) != 0){
           foreach($_SESSION['cart'] as $item){
 
         ?>
@@ -130,6 +134,7 @@ if(isset($_POST['delete-cart-submit'])){
                        $counter = $counter + 1;
                        $sum = $sum + $item['price'];
                       }
+                    }
             ?>
       </table>
       <div class="total-price">
