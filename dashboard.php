@@ -319,7 +319,7 @@ if(isset($_POST['update'])){
             <input type="radio" id="tab-4" name="tab-effect-3">
             <span>Add Card</span>
 
-            <input type="radio" id="tab-5" name="tab-effect-3" id="logout">
+            <input type="radio" id="tab-5" name="tab-effect-3" onclick="window.location.href='logout.php'">
             <span>Logout</span>
 
             <div class="line ease"></div>
