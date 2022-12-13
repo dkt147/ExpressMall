@@ -2,6 +2,7 @@
 $page = "cart";
 //require header file
 require('header.php');
+
 // require functions file
 require_once('functions.php');
 ?>
@@ -47,6 +48,8 @@ if(isset($_POST['delete-cart-submit'])){
 
 ?>
 
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
 
 <section id="page-header" class="about-header">
       <h2>Your Cart Items</h2>
@@ -64,12 +67,18 @@ if(isset($_POST['delete-cart-submit'])){
     <!-- cart items details-->
     
     <div class="small-container">
-      <table>
-        <tr>
-          <th>Product</th>
-          <th>Quantity</th>
-          <th>Subtotal</th>
-        </tr>
+    <table class="table table-striped" style="padding: 20px;">
+                        <thead>
+                            <tr style="background-color: grey;">
+                                <th scope="col">Item #</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">&nbsp;&nbsp;&nbsp;&nbsp;Image</th>
+                                <th scope="col">Quantity</th>
+                                <th scope="col">Price</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                           
         <?php 
           $counter = 0;
           $sum = 0;
@@ -77,37 +86,19 @@ if(isset($_POST['delete-cart-submit'])){
 
         ?>
         <tr>
-        
-          <td>
-          
-            <div class="cart-info">
-              <img src="<?php echo "Panel/Admin/uploads/".$item['product_image']?>" alt="image" />
-              <div>
-                <p style="color:alice"><b><?php echo $item['name'] ?? "Unknown"; ?></b></p>
-                <small style="margin:5px;color:green"><b><?php echo $item['price'] ?? '0'; ?></b></small>
-                <br />
-                <form method="post" action="cart.php">
-                   <input type="hidden" value="<?php echo $counter; ?> " name="counter">
-                   <input type="hidden" value="<?php echo $item['id'] ?? 0; ?> " name="p_Id">
-                   <button type="submit" name="delete-cart-submit" style="border: none; background:red; color:white;border:2px solid red;border-radius:25px;padding:5px;margin-top:5px">Remove</button> 
-                </form>
-              </div>
-            </div>
-            
-          </td>
-          <td id="qty">
-          <input type="number" value="<?php echo $item['quantity'] ?? 0; ?>">
-         </td>
-          <td><?php echo "Rs/- ".$item['price']; ?></td>
-          
-        </tr>
+                                <th scope="row" style="color:black"><?php echo $counter+1;?></th>
+                                <td><?php echo $item['name'];?></td>
+                                <td><img src="<?php echo "Panel/Admin/uploads/".$item['product_image'];?>" style="border-radius:50%"></td>
+                                <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $item['quantity'];?></td>
+                                <td><?php echo "Rs/- ".$item['price'];?></td>
+                            </tr>
+
         <?php 
                        $counter = $counter + 1;
                        $sum = $sum + $item['price'];
                       }
             ?>
       </table>
-
       <div class="total-price">
         <table>
           <tr>
