@@ -45,8 +45,8 @@ if(isset($_GET['category'])){
                                   ?>
                 <form method="post" action="shop.php">
 
-            <div class="pro" onclick="window.location.href='sproduct.php?id=<?php echo $item['id']?>'" style="height: 450px;">
-                <img src="<?php echo "Panel/Admin/uploads/".$item['product_image'] ?? "img/products/f1.jpg"; ?>" alt="" height="200px">
+            <div class="pro"  style="height: 470px;">
+                <img src="<?php echo "Panel/Admin/uploads/".$item['product_image'] ?? "img/products/f1.jpg"; ?>" alt="" height="200px" onclick="window.location.href='sproduct.php?id=<?php echo $item['id']?>'">
                 <div class="des">
                     <span><?php echo $item['name'] ?? "Unknown"; ?></span>
                     <h5 style="height:50px"><?php echo $item['detail'] ?? ""; ?></h5>
@@ -58,6 +58,7 @@ if(isset($_GET['category'])){
                         <i class="fas fa-star"></i>
                     </div>
                     <h4><?php echo "Rs/- ".$item['price'] ?? '0'; ?></h4>
+                    <span style="display:block;"><b>Qty: <input type="number" value="1" name="quantity" style="border: 2px solid white;width:100px;height:20px"></b></span>
                     <span><?php if($item['quantity'] == 0){echo '<span style="color:red">Out Of Stock</span>';}else{echo '<span style="color:green">Available</span>';} ?></span>
                </div>
                     <input type="hidden" value="<?php echo $item['id'] ?? '1';?>" name="id">

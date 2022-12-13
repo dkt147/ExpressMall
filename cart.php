@@ -72,7 +72,7 @@ require_once('functions.php');
           <td>
           
             <div class="cart-info">
-              <img src="<?php echo $item['image'] ?? "img/products/f1.jpg"; ?>" alt="Tshirt" />
+              <img src="<?php echo "Panel/Admin/uploads/".$item['product_image']?>" alt="image" />
               <div>
                 <p style="color:alice"><b><?php echo $item['name'] ?? "Unknown"; ?></b></p>
                 <small style="margin:5px;color:green"><b><?php echo $item['price'] ?? '0'; ?></b></small>
@@ -86,7 +86,7 @@ require_once('functions.php');
             
           </td>
           <td id="qty">
-          <input type="number" value="1">
+          <input type="number" value="<?php echo $item['quantity'] ?? 0; ?>">
          </td>
           <td><?php echo $item['price']; ?></td>
           
