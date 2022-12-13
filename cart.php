@@ -21,6 +21,7 @@ require_once('functions.php');
 
     //Getting Values From Form Tag...
     $name = $_POST['name'];
+    $tracking_id = $_POST['name']."-".rand(10,100);
     $email = $_POST['email'];
     $phone = $_POST['phone'];
     $address = $_POST['address'];
@@ -28,7 +29,7 @@ require_once('functions.php');
 
 
     //Insert Query For Mysql..
-    $query = "INSERT INTO `order_tbl`(`customer_name`, `customer_email`, `customer_phone`, `customer_address`, `customer_zip`) VALUES ('$name','$email','$phone','$address','$zip')";
+    $query = "INSERT INTO `orders`(`customer_name`, `customer_email`, `customer_phone`, `customer_address`, `customer_zip`) VALUES ('$name','$email','$phone','$address','$zip')";
     $res = mysqli_query($con, $query);
 
     
