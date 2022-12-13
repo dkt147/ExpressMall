@@ -63,7 +63,7 @@ if(isset($_GET['category'])){
                 <form method="post">
                     <input type="hidden" value="<?php echo $item['id'] ?? '1';?>" name="p_Id">
                     <input type="hidden" value="<?php echo '1';?>" name="u_Id">
-                    <button type="submit" <?php if($item['quantity'] == 0){echo 'disabled';}else{echo '';} ?> name="product_submit" style="background-color: #0fc5b9; border: none; padding: 10px; color:white ; border-radius:20px;">Add to Cart</button>
+                    <button type="submit" id="product_btn" <?php if($item['quantity'] == 0){echo 'disabled';}else{echo '';} ?> name="product_submit" style="background-color: #0fc5b9; border: none; padding: 10px; color:white ; border-radius:20px;">Add to Cart</button>
                 </form>  
               </div>
               &nbsp;&nbsp;
@@ -75,5 +75,8 @@ if(isset($_GET['category'])){
                     ?>
     </section>
 
+    <script>
+        
+        </script>
    
     <?php include 'footer.php';?>
