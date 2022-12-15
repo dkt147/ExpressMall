@@ -65,7 +65,7 @@ require_once('functions.php');
 include 'test.php';
 
       unset($_SESSION['cart']);
-      echo "<script>alert('Your order has been confirmed!')</script>";
+      echo "<script>window.location.href='dashboard.php?is_success=1'</script>";
 
 
     }
@@ -110,6 +110,7 @@ if(isset($_POST['delete-cart-submit'])){
                                 <th scope="col">&nbsp;&nbsp;&nbsp;&nbsp;Image</th>
                                 <th scope="col">Quantity</th>
                                 <th scope="col">Price</th>
+                                <th scope="col">Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -127,6 +128,7 @@ if(isset($_POST['delete-cart-submit'])){
                                 <td><img src="<?php echo "Panel/Admin/uploads/".$item['product_image'];?>" style="border-radius:50%"></td>
                                 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $item['quantity'];?></td>
                                 <td><?php echo "Rs/- ".$item['price'];?></td>
+                                <td><button class="btn btn-danger" value="<?php echo $counter?>"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
                             </tr>
 
         <?php 
@@ -182,5 +184,16 @@ if(isset($_POST['delete-cart-submit'])){
 
     </section>
 
+    
+<script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+     <script>
+        $('.btn-danger').click(function(){
+            var data1 = this.value
+          window.location.href=`remove_item.php?id=${data1}`;
+          
+        });
+        </script>
    
+ 
+
     <?php include 'footer.php';?>

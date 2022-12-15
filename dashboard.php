@@ -392,7 +392,7 @@ if(isset($_POST['update'])){
           $counter = 0;
           $sum = 0;
           $user_id = $user_data['id'];
-          $query = "SELECT * FROM `orders` where user_id = '$user_id'";
+          $query = "SELECT * FROM `orders` where user_id = '$user_id' and is_cancel = 0 and is_return = 0 and is_complete = 0";
           $res = mysqli_query($con, $query);
           if (mysqli_num_rows($res) > 0) {
           while ($item = mysqli_fetch_assoc($res)) {

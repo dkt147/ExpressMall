@@ -58,7 +58,7 @@ if(isset($_GET['category'])){
                         <i class="fas fa-star"></i>
                     </div>
                     <h4><?php echo "Rs/- ".$item['price'] ?? '0'; ?></h4>
-                    <span style="display:block;"><b>Qty: <input type="number" value="1" min="1" name="quantity" style="border: 2px solid white;width:100px;height:20px"></b></span>
+                    <span style="display:block;"><b>Qty: <input type="number" value="1" min="1" max="<?php echo $item['quantity'] ?>" name="quantity" style="border: 2px solid white;width:100px;height:20px"></b></span>
                     <span><?php if($item['quantity'] == 0){echo '<span style="color:red">Out Of Stock</span>';}else{echo '<span style="color:green">Available</span>';} ?></span>
                </div>
                     <input type="hidden" value="<?php echo $item['id'] ?? '1';?>" name="id">
