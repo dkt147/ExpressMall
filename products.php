@@ -24,7 +24,6 @@
                 </div>
                
                 </div>
-                &nbsp;&nbsp;
                 
             <?php
                     }

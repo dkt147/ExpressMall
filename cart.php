@@ -148,7 +148,7 @@ if(isset($_POST['delete-cart-submit'])){
       </div>
     </div>
 
-    <section id="form-details" style="width: 50%">
+    <section id="form-details">
 
     <?php 
     

@@ -43,7 +43,7 @@ if(isset($_GET['category'])){
                                   if (mysqli_num_rows($res) > 0) {
                                     while ($item = mysqli_fetch_assoc($res)) {
                                   ?>
-                <form method="post" action="shop.php">
+                <form method="post" action="shop.php" style="width: 400px;">
 
             <div class="pro"  style="height: 470px;">
                 <img src="<?php echo "Panel/Admin/uploads/".$item['product_image'] ?? "img/products/f1.jpg"; ?>" alt="" height="200px" onclick="window.location.href='sproduct.php?id=<?php echo $item['id']?>'">

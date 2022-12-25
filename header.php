@@ -75,9 +75,24 @@
             </ul>
         </div>
         <div id="mobile">
-            <a href="cart.html">
-                <i class="fa fa-shopping-bag" aria-hidden="true"></i>
-            </a>
+        <a href="cart.php">
+                        <span><i class="fa fa-shopping-bag fa-lg" aria-hidden="true"></i><sup style="color: yellow"><?php if(isset($_SESSION['cart'])){echo count($_SESSION['cart']);}else{echo 0;}?></sup></span>
+                        
+                    </a>
+        <?php
+                    if(isset($_SESSION['email'])){?>
+                    <a href="dashboard.php">
+                        <span><i class="fa fa-user fa-lg" aria-hidden="true"></i></span>
+                    </a>
+                    <?php
+                    }else{
+                    ?>
+                    <a href="login.php">
+                        <span><i class="fa fa-sign-in fa-lg" aria-hidden="true"></i></span>
+                    </a>
+                    <?php
+                }
+                ?>
             <i id="bar" class="fa fa-bars" aria-hidden="true"></i>      
                  
         </div>
