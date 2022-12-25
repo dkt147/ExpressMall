@@ -38,9 +38,20 @@ function codeverify() {
         var phone = document.getElementById('Phone').value;
         var password = document.getElementById('Password').value;
 
-        
+        $.ajax({
+            type: "POST",
+            url: "request/_signup.php",
+            data: {number:number,email:email,phone:phone,password:password},
+            dataType: "json",
+            encode: true,
+        }).done(function (data) {
+            if(data == 1){
+                alert("Verification successful!");
+            }else{
+                alert("Creation failed!");
+            }
+        });
 
-        alert("Verification successful!");
         var user = result.user;
         console.log(user);
 

@@ -1,25 +1,4 @@
-<?php
-// if(isset($_POST['signup'])){
-//     include "db.php";
 
-//     $name = $_POST['name'];
-//     $phone = $_POST['phone'];
-//     $email = $_POST['email'];
-//     $password = $_POST['password'];
-
-//     $query = "INSERT INTO `users`(`name`, `email`, `phone`, `password`) VALUES ('$name','$email','$phone','$password')";
-//     $run = mysqli_query($con,$query);
-//     if($run){
-//         session_start();
-//         $_SESSION['email'] = $email;
-//         echo "<script>window.location.href='index.php'</script>";
-//         // header("Location : index.php");
-
-//     }else{
-//         echo "<script>alert('Signup Failed')</script>";
-//     }
-// }
-?>
 <!DOCTYPE html>
 <html lang="en">
 
