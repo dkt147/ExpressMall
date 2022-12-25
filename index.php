@@ -5,20 +5,8 @@ require('header.php');
 require_once('functions.php');
 
 ?>
-    <!-- <section id="hero">
-        <h4>Express Mall</h4>
-        <h4>On Discounted Price</h4>
-        <h1>All Premium Products</h1>
-        <p>Order now, Cash on delivery easy process</p>
-        <button><a href="shop.php" style="text-decoration: none;color:white">Shop Now</a></button>
-        <a href="#" class="to-top">
-        <i class="fas fa-chevron-up"></i>
-        </a>
-    </section> -->
 
     <section class="carousel">
-  <!-- <button class="slider-button slider-button-prev" data-slide-direction="prev">&#8592</button>
-  <button class="slider-button slider-button-next" data-slide-direction="next">&#8594</button> -->
   <ul class="slides">
     <li class="slide" data-active-slide>
       <img src="banner/1.jpg" alt="Nature Image #1" />
@@ -53,34 +41,20 @@ require_once('functions.php');
 
     <section id="sm-banner" class="section-p1">
         <div class="banner-box ">
-            <h4>Crazy Deals</h4>
-            <h2>buy 1 get 1 free</h2>
-            <span>Lorem ipsum dolor sit amet consectetur.</span>
-            <button class="white">Learn more</button>
+          
         </div>
 
-        <div class="banner-box banner-box2">
-            <h4>Spring Summer</h4>
-            <h2>buy 1 get 1 free</h2>
-            <span>Lorem ipsum asdasdasdasd.</span>
-            <button class="white">Learn more</button>
-        </div>
-        
-       
     </section>
 
     <section id="banner3">
         <div class="banner-box">
-            <h2>SEASONAL SALE</h2>
-            <h3>Winter Collection</h3>
+           
         </div>
         <div class="banner-box banner-box2">
-            <h2>SEASONAL</h2>
-            <h3>Winter Collection</h3>
+           
         </div>
         <div class="banner-box banner-box3">
-            <h2> SALE</h2>
-            <h3>Winter Collection</h3>
+          
         </div>
     </section>
 

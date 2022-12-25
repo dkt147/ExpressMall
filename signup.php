@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="assets/fonts/feather-font/css/iconfont.css">
     <link rel="stylesheet" href="assets/vendors/flag-icon-css/css/flag-icon.min.css">
     <link rel="stylesheet" href="assets/vendors/sweetalert2/sweetalert2.min.css">
+    
     <!-- endinject -->
     <!-- Layout styles -->
     <link rel="stylesheet" href="assets/css/demo_5/style.css">
@@ -88,7 +89,7 @@
             </div>
         </div>
     </div>
-
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
     <!-- core:js -->
     <script src="assets/vendors/core/core.js"></script>
     <!-- endinject -->

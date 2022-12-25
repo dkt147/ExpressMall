@@ -43,7 +43,7 @@ if(isset($_GET['category'])){
                                   if (mysqli_num_rows($res) > 0) {
                                     while ($item = mysqli_fetch_assoc($res)) {
                                   ?>
-                <form method="post" action="shop.php" style="width: 400px;">
+                <form method="post" action="shop.php" style="width: 300px;">
 
             <div class="pro"  style="height: 470px;">
                 <img src="<?php echo "Panel/Admin/uploads/".$item['product_image'] ?? "img/products/f1.jpg"; ?>" alt="" height="200px" onclick="window.location.href='sproduct.php?id=<?php echo $item['id']?>'">
@@ -70,7 +70,7 @@ if(isset($_GET['category'])){
                     <button type="submit" id="product_btn" <?php if($item['quantity'] == 0){echo 'disabled';}else{echo '';} ?> name="product_submit" style="background-color: #0fc5b9; border: none; padding: 10px; color:white ; border-radius:20px;">Add to Cart</button>
                 </form>  
               </div>
-              &nbsp;&nbsp;
+              <!--&nbsp;&nbsp;-->
                 <?php }}else{ ?>
 
                 <h4 style="text-align:center">No Similar Product Found</h4>

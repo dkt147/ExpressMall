@@ -396,8 +396,8 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  background-image: url(img/banner/b17.jpg);
-  min-width: 600px;
+  background-image: url(https://d1iv6qgcmtzm6l.cloudfront.net/banner_desktops/UqiA6J6Ka1SpgWavznSjdMeF3oc9m8EJA5Zj4eXq.jpg);
+  min-width: 100%;
   height: 50vh;
   background-size: cover;
   background-position: center;
@@ -406,7 +406,7 @@ body {
 }
 
 #sm-banner .banner-box2 {
-  background-image: url(img/banner/b10.jpg);
+  background-image: url(https://d1iv6qgcmtzm6l.cloudfront.net/banner_desktops/UqiA6J6Ka1SpgWavznSjdMeF3oc9m8EJA5Zj4eXq.jpg);
 }
 
 #sm-banner h4 {
@@ -445,21 +445,21 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  background-image: url(img/banner/b7.jpg);
+  background-image: url(https://d1iv6qgcmtzm6l.cloudfront.net/banner_desktops/vWdV1KK9trlL9XdY6oeYFj11hHc5wMHjYCRa3WtH.png);
   min-width: 30%;
   height: 30vh;
-  background-size: cover;
-  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
   padding: 20px;
   margin-bottom: 20px;
 }
 
 #banner3 .banner-box2 {
-  background-image: url(img/banner/b4.jpg);
+  background-image: url(https://d1iv6qgcmtzm6l.cloudfront.net/banner_desktops/zPF5o7GkZN6wJx2C7OXAfv9OHvGfVGB7QAjt9dWV.png);
 }
 
 #banner3 .banner-box3 {
-  background-image: url(img/banner/b18.jpg);
+  background-image: url(https://d1iv6qgcmtzm6l.cloudfront.net/banner_desktops/7f6sSheEWFXVzu4qNS8x1giaHCpQ5o8Bf1CXSgBm.png);
 }
 
 #banner3 h2 {
@@ -1136,12 +1136,10 @@ th:last-child {
   }
 
   #feature .fe-box {
-    width: 110px;
+    width: 155px;
     margin: 0 0 15px 0;
   }
-  #feature {
-    justify-content: space-around;
-  }
+  
   #product1 .pro {
     width: 100%;
   }

@@ -55,9 +55,9 @@ function codeverify() {
         var user = result.user;
         console.log(user);
 
-        window.onload = setTimeout(function(){
-            window.location = 'dashboard.php';
-        }, 2000);
+        // window.onload = setTimeout(function(){
+        //     window.location = 'dashboard.php';
+        // }, 2000);
 
     }).catch(function(error) {
         alert("OTP is not valid!");
